@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF1939DD2CDA9CB900CB6FED /* DirectionalControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1939DC2CDA9CB900CB6FED /* DirectionalControlsView.swift */; };
+		AF1939DF2CDA9CF900CB6FED /* GameControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1939DE2CDA9CF900CB6FED /* GameControlsView.swift */; };
+		AF1939E12CDA9D1C00CB6FED /* GameCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1939E02CDA9D1C00CB6FED /* GameCellView.swift */; };
+		AF1939E32CDA9D3400CB6FED /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1939E22CDA9D3400CB6FED /* GameBoardView.swift */; };
+		AF1939E52CDA9D4E00CB6FED /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1939E42CDA9D4E00CB6FED /* GameOverView.swift */; };
+		AF1939E72CDA9E3A00CB6FED /* WumpusGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1939E62CDA9E3A00CB6FED /* WumpusGame.swift */; };
 		AF5B28452CD9F59C003782D8 /* HuntTheWumpusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5B28442CD9F59C003782D8 /* HuntTheWumpusApp.swift */; };
 		AF5B28472CD9F59C003782D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5B28462CD9F59C003782D8 /* ContentView.swift */; };
 		AF5B28492CD9F59E003782D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF5B28482CD9F59E003782D8 /* Assets.xcassets */; };
@@ -14,6 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF1939DC2CDA9CB900CB6FED /* DirectionalControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionalControlsView.swift; sourceTree = "<group>"; };
+		AF1939DE2CDA9CF900CB6FED /* GameControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlsView.swift; sourceTree = "<group>"; };
+		AF1939E02CDA9D1C00CB6FED /* GameCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCellView.swift; sourceTree = "<group>"; };
+		AF1939E22CDA9D3400CB6FED /* GameBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardView.swift; sourceTree = "<group>"; };
+		AF1939E42CDA9D4E00CB6FED /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		AF1939E62CDA9E3A00CB6FED /* WumpusGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WumpusGame.swift; sourceTree = "<group>"; };
 		AF5B28412CD9F59C003782D8 /* HuntTheWumpus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuntTheWumpus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF5B28442CD9F59C003782D8 /* HuntTheWumpusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntTheWumpusApp.swift; sourceTree = "<group>"; };
 		AF5B28462CD9F59C003782D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +44,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF1939E82CDA9E7600CB6FED /* SwiftUIViews */ = {
+			isa = PBXGroup;
+			children = (
+				AF1939DC2CDA9CB900CB6FED /* DirectionalControlsView.swift */,
+				AF1939DE2CDA9CF900CB6FED /* GameControlsView.swift */,
+				AF1939E02CDA9D1C00CB6FED /* GameCellView.swift */,
+				AF1939E22CDA9D3400CB6FED /* GameBoardView.swift */,
+				AF1939E42CDA9D4E00CB6FED /* GameOverView.swift */,
+			);
+			path = SwiftUIViews;
+			sourceTree = "<group>";
+		};
 		AF5B28382CD9F59C003782D8 = {
 			isa = PBXGroup;
 			children = (
@@ -52,7 +76,9 @@
 			isa = PBXGroup;
 			children = (
 				AF5B28442CD9F59C003782D8 /* HuntTheWumpusApp.swift */,
+				AF1939E62CDA9E3A00CB6FED /* WumpusGame.swift */,
 				AF5B28462CD9F59C003782D8 /* ContentView.swift */,
+				AF1939E82CDA9E7600CB6FED /* SwiftUIViews */,
 				AF5B28482CD9F59E003782D8 /* Assets.xcassets */,
 				AF5B284A2CD9F59E003782D8 /* Preview Content */,
 			);
@@ -137,8 +163,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1939E52CDA9D4E00CB6FED /* GameOverView.swift in Sources */,
 				AF5B28472CD9F59C003782D8 /* ContentView.swift in Sources */,
+				AF1939E12CDA9D1C00CB6FED /* GameCellView.swift in Sources */,
 				AF5B28452CD9F59C003782D8 /* HuntTheWumpusApp.swift in Sources */,
+				AF1939DF2CDA9CF900CB6FED /* GameControlsView.swift in Sources */,
+				AF1939DD2CDA9CB900CB6FED /* DirectionalControlsView.swift in Sources */,
+				AF1939E72CDA9E3A00CB6FED /* WumpusGame.swift in Sources */,
+				AF1939E32CDA9D3400CB6FED /* GameBoardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
