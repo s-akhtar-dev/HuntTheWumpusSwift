@@ -9,16 +9,17 @@ import Foundation //the 'iostream' of Swift
 
 /*----------------------------------------*/
 
-//Enumeration for Directions
+// Classic Enumeration for Directions
 enum Direction {
     case up, down, left, right
 }
 
 /*----------------------------------------*/
 
-//Enumeration for Game States
+// 1. Enum with Associated Values
 enum GameStatus: Equatable {
-    case playing, wumpusNearby, pitNearby, gameOver(String), victory
+    case playing, wumpusNearby, pitNearby, victory
+    case gameOver(String) // Associated value
     
     ///Variables w/ Cases for Message
     var message: String {
@@ -42,7 +43,24 @@ enum GameStatus: Equatable {
 
 /*----------------------------------------*/
 
-//Class Construct for WumpusGame (Swift)
+// 2. Protocol-Oriented Programming
+protocol GameControls {
+    func reset()
+    func isValidMove(to position: (x: Int, y: Int)) -> Bool
+    func move(to position: (x: Int, y: Int))
+    func move(direction: Direction)
+    func shootArrow(direction: Direction)
+    func moveArrow(_ position: inout (x: Int, y: Int), direction: Direction)
+    func handleWumpusHit()
+    func handleMissedShot()
+    func updateGameStatus()
+    func isAdjacentToWumpus() -> Bool
+    func isAdjacentToPit() -> Bool
+}
+
+/*----------------------------------------*/
+
+// 3. Classes and Property Observers in Swift
 class WumpusGame: GameControls, ObservableObject {
     ///Published Variables:
     ///Any changes made to these variables will update the entire app
@@ -54,8 +72,9 @@ class WumpusGame: GameControls, ObservableObject {
     private(set) var wumpusPosition: (x: Int, y: Int)
     private(set) var pitPositions: [(x: Int, y: Int)]
     
-    let boardWidth: Int = 6
-    let boardHeight: Int = 4
+    // 4. Type Safety and Inference
+    let boardWidth: Int = 6    // Type annotation
+    let boardHeight = 4        // Type inference
     
     ///init() is the constructor for Swift
     init() {
@@ -72,7 +91,7 @@ class WumpusGame: GameControls, ObservableObject {
         )}
     }
     
-    //Resets data for new game
+    // Resets data for new game
     func reset() {
         playerPosition = (x: 0, y: 3)
         wumpusPosition = (
@@ -88,14 +107,14 @@ class WumpusGame: GameControls, ObservableObject {
         showFinalState = false
     }
     
-    //Checks for valid move using position tuple
+    // Checks for valid move using position tuple
     func isValidMove(to position: (x: Int, y: Int)) -> Bool {
         let dx = abs(playerPosition.x - position.x)
         let dy = abs(playerPosition.y - position.y)
         return (dx == 1 && dy == 0) || (dx == 0 && dy == 1)
     }
     
-    //Moves player position from position tuple
+    // Moves player position from position tuple
     func move(to position: (x: Int, y: Int)) {
         ///guard is the same as using an if statement
         guard isValidMove(to: position) else { return }
@@ -103,7 +122,7 @@ class WumpusGame: GameControls, ObservableObject {
         updateGameStatus()
     }
     
-    //Moves player position from direction tuple
+    // Moves player position from direction tuple
     func move(direction: Direction) {
         var newPosition = playerPosition
         ///switch statement for moving player based on direction
@@ -120,7 +139,7 @@ class WumpusGame: GameControls, ObservableObject {
         move(to: newPosition)
     }
     
-    //Shooting arrow mechanism
+    // Shooting arrow mechanism
     func shootArrow(direction: Direction) {
         guard arrowsLeft > 0 else { return }
         var arrowPosition = playerPosition
@@ -135,7 +154,7 @@ class WumpusGame: GameControls, ObservableObject {
         handleMissedShot()
     }
 
-    //Updates position from shooting arrow
+    // Updates position from shooting arrow
     func moveArrow(_ position: inout (x: Int, y: Int), direction: Direction) {
         switch direction {
         case .up: position.y = max(0, position.y - 1)
@@ -145,14 +164,14 @@ class WumpusGame: GameControls, ObservableObject {
         }
     }
 
-    //Sets game state when hitting wumpus
+    // Sets game state when hitting wumpus
     func handleWumpusHit() {
         arrowsLeft -= 1
         gameStatus = .victory
         showFinalState = true
     }
 
-    //Handling missed show for wumpus
+    // Handling missed show for wumpus
     func handleMissedShot() {
         arrowsLeft -= 1
         if arrowsLeft == 0 {
@@ -164,7 +183,7 @@ class WumpusGame: GameControls, ObservableObject {
         }
     }
     
-    //Updating GameState Enumeration from Move
+    // Updating GameState Enumeration from Move
     internal func updateGameStatus() {
         if (playerPosition == wumpusPosition) {
             gameStatus = .gameOver("The Wumpus got you! Game over!")
@@ -178,14 +197,14 @@ class WumpusGame: GameControls, ObservableObject {
         }
     }
     
-    //Checks for Adjacent Wumpus
+    // Checks for Adjacent Wumpus
     internal func isAdjacentToWumpus() -> Bool {
         let x = abs(playerPosition.x - wumpusPosition.x)
         let y = abs(playerPosition.y - wumpusPosition.y)
         return (x == 1 && y == 0) || (x == 0 && y == 1)
     }
     
-    //Checks for Adjacent Pit
+    // Checks for Adjacent Pit
     internal func isAdjacentToPit() -> Bool {
         pitPositions.contains { pit in
             let x = abs(playerPosition.x - pit.x)
@@ -193,22 +212,6 @@ class WumpusGame: GameControls, ObservableObject {
             return (x == 1 && y == 0) || (x == 0 && y == 1)
         }
     }
-}
-
-/*----------------------------------------*/
-
-protocol GameControls {
-    func reset()
-    func isValidMove(to position: (x: Int, y: Int)) -> Bool
-    func move(to position: (x: Int, y: Int))
-    func move(direction: Direction)
-    func shootArrow(direction: Direction)
-    func moveArrow(_ position: inout (x: Int, y: Int), direction: Direction)
-    func handleWumpusHit()
-    func handleMissedShot()
-    func updateGameStatus()
-    func isAdjacentToWumpus() -> Bool
-    func isAdjacentToPit() -> Bool
 }
 
 /*----------------------------------------*/
